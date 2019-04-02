@@ -1,4 +1,4 @@
-package com.weebly.jackthompsonjava.game2;
+package thompson.jack.engine2D;
 
 import java.awt.Toolkit;
 
