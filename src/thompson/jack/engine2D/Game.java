@@ -11,8 +11,6 @@ public class Game implements Runnable{
 	private boolean running; 
 	
 	private Display display;
-	private BufferStrategy bs;
-	private Graphics2D g;
 	
 	private Handler handler;
 	
@@ -76,13 +74,13 @@ public class Game implements Runnable{
 	}
 	
 	private void render() {
-		bs = display.getCanvas().getBufferStrategy();
+		BufferStrategy bs = display.getCanvas().getBufferStrategy();
 		if (bs == null) {
 			display.getCanvas().createBufferStrategy(3);
 			return;
 		}
 		
-		g = (Graphics2D) bs.getDrawGraphics();
+		Graphics2D g = (Graphics2D) bs.getDrawGraphics();
 		
 		g.clearRect(0, 0, width, height);
 		
