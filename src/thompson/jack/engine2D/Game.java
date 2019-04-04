@@ -9,28 +9,52 @@ public class Game implements Runnable{
 	private int height;
 	
 	private boolean running; 
+	private boolean debug;
 	
 	private Display display;
 	
 	private Handler handler;
+	private KeyHandler keyHandler;
+	private AssetHandler assetHandler;
+	
+	private Camera camera;
+	
+	private Player p1;
+	private World m1;
 	
 	public Game(int width, int height) {
 		this.width = width;
 		this.height = height;
+		
+		debug = true;
 	}
 	
 	private void init() {
-		System.out.println("creating display");
+		if(debug) {System.out.println("creating display");}
 		display = new Display(width, height);
 
-		System.out.println("creating handler");
-		handler = new Handler(this);		
+		if(debug) {System.out.println("creating handler");}
+		handler = new Handler(this);
+		
+		if(debug) {System.out.println("creating key handler");}
+		keyHandler = new KeyHandler(handler);
+		display.getJFrame().addKeyListener(keyHandler);
+
+		if(debug) {System.out.println("creating asset handler");}
+		assetHandler = new AssetHandler();
+
+		camera = new Camera(handler);
+		
+		p1 = new Player(0, 0, handler);
+		m1 = new World(assetHandler.getImage("maps", "huskies"), handler);
+		
+		camera.setFocus(p1);
 	}
 	
 	public void run() {
-		System.out.println("INITIALIZING");
+		if(debug) {System.out.println("INITIALIZING");}
 		init();
-		System.out.println("INITIALIZED");
+		if(debug) {System.out.println("INITIALIZED");}
 		
 		int fps = 60;
 		double timePerTick = 1000000000 / fps;
@@ -70,7 +94,9 @@ public class Game implements Runnable{
 	}
 	
 	private void tick() {
-	
+		keyHandler.tick();
+		p1.tick();
+		camera.tick();
 	}
 	
 	private void render() {
@@ -84,7 +110,8 @@ public class Game implements Runnable{
 		
 		g.clearRect(0, 0, width, height);
 		
-
+		m1.render(g);
+		p1.render(g);
 		
 		bs.show();
 		g.dispose();
@@ -105,4 +132,19 @@ public class Game implements Runnable{
 		return height;
 	}
 	
+	public KeyHandler getKeyHandler() {
+		return keyHandler;
+	}
+	
+	public Display getDisplay() {
+		return display;
+	}
+	
+	public Camera getCamera() {
+		return camera;
+	}
+	
+	public World getWorld() {
+		return m1;
+	}
 }
