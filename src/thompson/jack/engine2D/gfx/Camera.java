@@ -1,4 +1,7 @@
-package thompson.jack.engine2D;
+package thompson.jack.engine2D.gfx;
+
+import thompson.jack.engine2D.Handler;
+import thompson.jack.engine2D.Player;
 
 public class Camera {
 

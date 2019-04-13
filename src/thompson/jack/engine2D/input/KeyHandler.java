@@ -1,7 +1,9 @@
-package thompson.jack.engine2D;
+package thompson.jack.engine2D.input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
+import thompson.jack.engine2D.Handler;
 
 public class KeyHandler implements KeyListener{
 

@@ -1,4 +1,4 @@
-package thompson.jack.engine2D;
+package thompson.jack.engine2D.gfx;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

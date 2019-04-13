@@ -1,5 +1,8 @@
 package thompson.jack.engine2D;
 
+import thompson.jack.engine2D.gfx.Camera;
+import thompson.jack.engine2D.input.KeyHandler;
+
 public class Handler {
 
 	private Game game;

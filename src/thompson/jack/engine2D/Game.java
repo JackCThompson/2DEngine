@@ -4,6 +4,10 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 
+import thompson.jack.engine2D.gfx.AssetHandler;
+import thompson.jack.engine2D.gfx.Camera;
+import thompson.jack.engine2D.input.KeyHandler;
+
 public class Game implements Runnable{
 
 	private int width;
@@ -113,9 +117,6 @@ public class Game implements Runnable{
 		
 		m1.render(g);
 		p1.render(g);
-		
-		g.setColor(Color.GREEN);
-		g.fillRect((width / 2) - 4, (height / 2) - 4, 8, 8);
 		
 		bs.show();
 		g.dispose();
