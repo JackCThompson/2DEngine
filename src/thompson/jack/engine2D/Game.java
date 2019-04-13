@@ -1,5 +1,6 @@
 package thompson.jack.engine2D;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 
@@ -112,6 +113,9 @@ public class Game implements Runnable{
 		
 		m1.render(g);
 		p1.render(g);
+		
+		g.setColor(Color.GREEN);
+		g.fillRect((width / 2) - 4, (height / 2) - 4, 8, 8);
 		
 		bs.show();
 		g.dispose();

@@ -61,11 +61,21 @@ public class Player {
 	}
 	
 	public void render(Graphics g) {
-		g.setColor(Color.RED);
-		g.fillRect(xPos - handler.getCamera().getXPos(), yPos - handler.getCamera().getYPos(), width, height);
+		
+//		g.setColor(Color.BLUE);
+//		g.fillRect((int) (((xPos - handler.getCamera().getXPos()) - handler.getGame().getWidth() * 0.5) * handler.getCamera().getScale() + handler.getGame().getWidth() * 0.5), 
+//				   (int) (((yPos - handler.getCamera().getYPos()) - handler.getGame().getHeight() * 0.5) * handler.getCamera().getScale() + handler.getGame().getHeight() * 0.5), 
+//				   (int) (width * handler.getCamera().getScale()), 
+//				   (int) (height * handler.getCamera().getScale()));
+		
+		g.setColor(Color.BLUE);
+		g.fillRect((int) Math.round((xPos - handler.getCamera().getXPos()) * handler.getCamera().getScale()), 
+				   (int) Math.round((yPos - handler.getCamera().getYPos()) * handler.getCamera().getScale()), 
+				   (int) Math.round(width * handler.getCamera().getScale()), 
+				   (int) Math.round(height * handler.getCamera().getScale()));
 	
-		g.setColor(Color.BLACK);
-		g.fillRect(xPos - handler.getCamera().getXPos(), yPos - handler.getCamera().getYPos(), 3, 3);
+//		g.setColor(Color.BLACK);
+//		g.fillRect(xPos - handler.getCamera().getXPos(), yPos - handler.getCamera().getYPos(), 3, 3);
 		
 	}
 

@@ -15,24 +15,25 @@ public class Camera {
 	public Camera(Handler handler) {
 		this.handler = handler;
 		
-		focusedHeight = 0.6;
+		focusedHeight = 0.4;
 	}
 	
 	public void tick() {
 		if (focused != null) {
-			xPos = focused.getXPos() - (handler.getGame().getWidth() - focused.getWidth()) / 2;
-			yPos = focused.getYPos() - (handler.getGame().getHeight() - focused.getHeight()) / 2;
+			
+			xPos = (int) (focused.getXPos() - (handler.getGame().getWidth() / scale - focused.getWidth()) / 2);
+			yPos = (int) (focused.getYPos() - (handler.getGame().getHeight() / scale - focused.getHeight()) / 2);
 			
 			if (xPos < 0) {
 				xPos = 0;
-			} else if (xPos + handler.getGame().getWidth() > handler.getGame().getWorld().getWidth()) {
-				xPos = handler.getGame().getWorld().getWidth() - handler.getGame().getWidth();
+			} else if (xPos + handler.getGame().getWidth() / scale > handler.getGame().getWorld().getWidth()) {
+				xPos = (int) (handler.getGame().getWorld().getWidth() - handler.getGame().getWidth() / scale);
 			}
 			
 			if (yPos < 0) {
 				yPos = 0;
-			} else if (yPos + handler.getGame().getHeight() > handler.getGame().getWorld().getHeight()) {
-				yPos = handler.getGame().getWorld().getHeight() - handler.getGame().getHeight();
+			} else if (yPos + handler.getGame().getHeight() / scale > handler.getGame().getWorld().getHeight()) {
+				yPos = (int) (handler.getGame().getWorld().getHeight() - handler.getGame().getHeight() / scale);
 			}
 			
 		} else {
@@ -43,7 +44,7 @@ public class Camera {
 	
 	public void setFocus(Player player) {
 		focused = player;
-		scale = (handler.getGame().getHeight() * focusedHeight) / focused.getHeight();
+		scale = handler.getGame().getHeight() * focusedHeight / focused.getHeight();
 	}
 	
 	public double getScale() {
@@ -57,4 +58,5 @@ public class Camera {
 	public int getYPos() {
 		return yPos;
 	}
+	
 }
