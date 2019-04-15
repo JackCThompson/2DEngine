@@ -2,6 +2,7 @@ package thompson.jack.engine2D;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 public class Player {
@@ -13,6 +14,9 @@ public class Player {
 	
 	private int width;
 	private int height;
+
+	private CollisionBox collisionBox;
+	private CollisionBox collisionBoxOnMap;
 	
 	private int speed;
 	
@@ -20,16 +24,19 @@ public class Player {
 	
 	public Player(int xPos, int yPos, Handler handler) {
 		this.handler = handler;
-		
+
 		this.xPos = xPos;
 		this.yPos = yPos;
+
+		collisionBox = new CollisionBox(7, 46, 18, 18);
+		collisionBoxOnMap = collisionBox.translate(xPos, yPos);
 		
-		width = 100;
-		height = width * 2;
-		
-		speed = 10;
+		speed = 5;
 		
 		texture = handler.getGraphicsLoader().getImage("textures", "squad").getSubimage(0, 0, 32, 64);
+		
+		width = texture.getWidth();
+		height = texture.getHeight();
 	}
 	
 	public void tick() {
@@ -49,26 +56,37 @@ public class Player {
 			xMove -= speed;
 		}
 		
+		CollisionBox newBoxX = collisionBox.translate(xPos + xMove, yPos);
+		CollisionBox newBoxY = collisionBox.translate(xPos, yPos + yMove);
+		
+		if (handler.getGame().getWorld().intersects(newBoxX)) {
+			xMove = 0;
+		}
+		
+		if (handler.getGame().getWorld().intersects(newBoxY)) {
+			yMove = 0;
+		}
+		
 		xPos += xMove;
 		yPos += yMove;
 
-		if (xPos < 0) {
-			xPos = 0;
-		} else if (xPos + width > handler.getGame().getWorld().getWidth()) {
-			xPos = handler.getGame().getWorld().getWidth() - width;
+		if (xPos + collisionBox.getX() < 0) {
+			xPos = -collisionBox.getX();
+		} else if (xPos + collisionBox.getX() + collisionBox.getWidth() > handler.getGame().getWorld().getWidth()) {
+			xPos = handler.getGame().getWorld().getWidth() - collisionBox.getX() - collisionBox.getWidth();
 		}
 		
-		if (yPos < 0) {
-			yPos = 0;
-		} else if (yPos + height > handler.getGame().getWorld().getHeight()) {
-			yPos = handler.getGame().getWorld().getHeight() - height;
+		if (yPos + collisionBox.getY() < 0) {
+			yPos = -collisionBox.getY();
+		} else if (yPos + collisionBox.getY() + collisionBox.getHeight() > handler.getGame().getWorld().getHeight()) {
+			yPos = handler.getGame().getWorld().getHeight() - collisionBox.getY() - collisionBox.getHeight();
 		} 
+		
+		collisionBoxOnMap = collisionBox.translate(xPos, yPos);
 	}
 	
 	public void render(Graphics g) {
 		
-		
-		g.setColor(Color.BLUE);
 		g.drawImage(texture,
 				   (int) Math.round((xPos - handler.getCamera().getXPos()) * handler.getCamera().getScale()), 
 				   (int) Math.round((yPos - handler.getCamera().getYPos()) * handler.getCamera().getScale()), 
@@ -76,6 +94,10 @@ public class Player {
 				   (int) Math.round(height * handler.getCamera().getScale()),
 				   null);
 	
+	}
+	
+	public CollisionBox getCollisionBox() {
+		return collisionBox;
 	}
 
 	public int getXPos() {

@@ -7,21 +7,22 @@ public class World {
 
 	private Handler handler;
 	private BufferedImage map;
+	private CollisionBox[] collisionBox;
+	
+	public World(BufferedImage map, CollisionBox[] collisionBox, Handler handler) {
+		this.handler = handler;
+		this.map = map;
+		this.collisionBox = collisionBox;
+	}
 	
 	public World(BufferedImage map, Handler handler) {
 		this.handler = handler;
 		this.map = map;
+		
+		collisionBox = new CollisionBox[]{new CollisionBox(189, 424, 67, 120)};
 	}
 	
 	public void render(Graphics g) {
-//		g.drawImage(map, 0, 0, 
-//				handler.getGame().getWidth(), 
-//				handler.getGame().getHeight(), 
-//				handler.getCamera().getXPos(), 
-//				handler.getCamera().getYPos(),
-//				handler.getCamera().getXPos() + (int) (handler.getCamera().getScale() * handler.getGame().getWidth()), 
-//				handler.getCamera().getYPos() + (int) (handler.getCamera().getScale() * handler.getGame().getHeight()), 
-//				null);
 
 		g.drawImage(map, 
 				0, 
@@ -33,15 +34,17 @@ public class World {
 				handler.getCamera().getXPos() + (int) Math.round(handler.getGame().getWidth() / handler.getCamera().getScale()), 
 				handler.getCamera().getYPos() + (int) Math.round(handler.getGame().getHeight() / handler.getCamera().getScale()), 
 				null);
-		
-//		g.drawImage(map, 0, 0, 
-//				handler.getGame().getWidth(), 
-//				handler.getGame().getHeight(), 
-//				(int) ((handler.getCamera().getXPos() - handler.getGame().getWidth() * 0.5) * handler.getCamera().getScale() + handler.getGame().getWidth() * 0.5), 
-//				(int) ((handler.getCamera().getYPos() - handler.getGame().getHeight() * 0.5) * handler.getCamera().getScale() + handler.getGame().getHeight() * 0.5),
-//				(int) ((handler.getCamera().getXPos() + handler.getGame().getWidth()) * handler.getCamera().getScale()),
-//				(int) ((handler.getCamera().getYPos() + handler.getGame().getHeight()) * handler.getCamera().getScale()),
-//				null);
+	}
+	
+	public boolean intersects(CollisionBox other) {
+		for (CollisionBox b : collisionBox) {
+
+			System.out.println(b.getX() + " " + b.getY() + " " + b.getWidth() + " " + b.getHeight());
+			if (b.intersects(other)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public int getWidth() {
