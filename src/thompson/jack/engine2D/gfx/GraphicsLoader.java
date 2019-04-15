@@ -5,11 +5,11 @@ import java.io.File;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class AssetHandler {
+public class GraphicsLoader {
 
 	public Map<String, Map<String, BufferedImage>> dirs; // directories
 	
-	public AssetHandler() {
+	public GraphicsLoader() {
 		dirs = new TreeMap<String, Map<String, BufferedImage>>();
 		
 		File gfxDir = new File("res/gfx");

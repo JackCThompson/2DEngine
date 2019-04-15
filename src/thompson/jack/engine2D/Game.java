@@ -1,11 +1,10 @@
 package thompson.jack.engine2D;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 
-import thompson.jack.engine2D.gfx.AssetHandler;
 import thompson.jack.engine2D.gfx.Camera;
+import thompson.jack.engine2D.gfx.GraphicsLoader;
 import thompson.jack.engine2D.input.KeyHandler;
 
 public class Game implements Runnable{
@@ -20,7 +19,7 @@ public class Game implements Runnable{
 	
 	private Handler handler;
 	private KeyHandler keyHandler;
-	private AssetHandler assetHandler;
+	private GraphicsLoader graphicsLoader;
 	
 	private Camera camera;
 	
@@ -46,12 +45,12 @@ public class Game implements Runnable{
 		display.getJFrame().addKeyListener(keyHandler);
 
 		if(debug) {System.out.println("creating asset handler");}
-		assetHandler = new AssetHandler();
+		graphicsLoader = new GraphicsLoader();
 
 		camera = new Camera(handler);
 		
 		p1 = new Player(0, 0, handler);
-		m1 = new World(assetHandler.getImage("maps", "huskies"), handler);
+		m1 = new World(graphicsLoader.getImage("maps", "huskies"), handler);
 		
 		camera.setFocus(p1);
 	}
@@ -139,6 +138,10 @@ public class Game implements Runnable{
 	
 	public KeyHandler getKeyHandler() {
 		return keyHandler;
+	}
+	
+	public GraphicsLoader getGraphicsLoader() {
+		return graphicsLoader;
 	}
 	
 	public Display getDisplay() {

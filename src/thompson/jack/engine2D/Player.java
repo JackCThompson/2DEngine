@@ -2,6 +2,7 @@ package thompson.jack.engine2D;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 public class Player {
 
@@ -15,6 +16,8 @@ public class Player {
 	
 	private int speed;
 	
+	private BufferedImage texture;
+	
 	public Player(int xPos, int yPos, Handler handler) {
 		this.handler = handler;
 		
@@ -22,9 +25,11 @@ public class Player {
 		this.yPos = yPos;
 		
 		width = 100;
-		height = 100;
+		height = width * 2;
 		
 		speed = 10;
+		
+		texture = handler.getGraphicsLoader().getImage("textures", "squad").getSubimage(0, 0, 32, 64);
 	}
 	
 	public void tick() {
@@ -62,21 +67,15 @@ public class Player {
 	
 	public void render(Graphics g) {
 		
-//		g.setColor(Color.BLUE);
-//		g.fillRect((int) (((xPos - handler.getCamera().getXPos()) - handler.getGame().getWidth() * 0.5) * handler.getCamera().getScale() + handler.getGame().getWidth() * 0.5), 
-//				   (int) (((yPos - handler.getCamera().getYPos()) - handler.getGame().getHeight() * 0.5) * handler.getCamera().getScale() + handler.getGame().getHeight() * 0.5), 
-//				   (int) (width * handler.getCamera().getScale()), 
-//				   (int) (height * handler.getCamera().getScale()));
 		
 		g.setColor(Color.BLUE);
-		g.fillRect((int) Math.round((xPos - handler.getCamera().getXPos()) * handler.getCamera().getScale()), 
+		g.drawImage(texture,
+				   (int) Math.round((xPos - handler.getCamera().getXPos()) * handler.getCamera().getScale()), 
 				   (int) Math.round((yPos - handler.getCamera().getYPos()) * handler.getCamera().getScale()), 
 				   (int) Math.round(width * handler.getCamera().getScale()), 
-				   (int) Math.round(height * handler.getCamera().getScale()));
+				   (int) Math.round(height * handler.getCamera().getScale()),
+				   null);
 	
-//		g.setColor(Color.BLACK);
-//		g.fillRect(xPos - handler.getCamera().getXPos(), yPos - handler.getCamera().getYPos(), 3, 3);
-		
 	}
 
 	public int getXPos() {
