@@ -9,17 +9,19 @@ public class Map {
 	private BufferedImage map;
 	private CollisionBox[] collisionBox;
 	
+	// Creates a new Map object with the background BufferedImage:map and CollisionBox[]:collisionBox
 	public Map(BufferedImage map, CollisionBox[] collisionBox, Handler handler) {
 		this.handler = handler;
 		this.map = map;
 		this.collisionBox = collisionBox;
 	}
 	
+	// Creates a new Map object with the background BufferedImage:map
 	public Map(BufferedImage map, Handler handler) {
-		this.handler = handler;
-		this.map = map;
+		this(map, null, handler);
 	}
 	
+	// Renders the visible portion of the map to the screen
 	public void render(Graphics g) {
 
 		g.drawImage(map, 
@@ -34,6 +36,7 @@ public class Map {
 				null);
 	}
 	
+	// Returns true if CollisionBox:other intersects with any of the map's collision boxes
 	public boolean intersects(CollisionBox other) {
 		for (CollisionBox b : collisionBox) {
 

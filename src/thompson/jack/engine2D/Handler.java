@@ -8,6 +8,7 @@ public class Handler {
 
 	private Game game;
 	
+	// Creates a new Handler to aid in get...() operations for Game:game
 	public Handler(Game game) {
 		this.game = game;
 	}

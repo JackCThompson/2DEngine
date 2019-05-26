@@ -4,12 +4,14 @@ public class Player extends Entity{
 	
 	private int speed;
 	
+	// Creates a new Player object at position (xPos, yPos)
 	public Player(int xPos, int yPos, Handler handler) {
 		super(xPos, yPos, handler);
 		
 		speed = 5;
 	}
 	
+	// Moves the player according to user input and handles collisions and boundaries
 	public void tick() {
 		int xMove = 0;
 		int yMove = 0;

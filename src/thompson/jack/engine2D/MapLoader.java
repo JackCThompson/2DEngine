@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class MapLoader {
 
+	// Returns a new Map loaded from data in the png and txt files called String:mapName.(png/txt)
 	public static Map loadMap(String mapName, Handler handler) {
 		BufferedImage mapImage = handler.getGraphicsLoader().getImage("maps", mapName);
 		

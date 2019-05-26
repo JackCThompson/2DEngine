@@ -9,6 +9,7 @@ public class Display {
 	private JFrame frame;
 	private Canvas canvas;
 	
+	// Creates a Display object for a window of the specified width and height
 	public Display(int width, int height) {
 		frame = new JFrame("Game 2");
 		frame.setSize(width,  height);

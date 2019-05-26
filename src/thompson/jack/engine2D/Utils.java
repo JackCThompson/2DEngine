@@ -5,6 +5,7 @@ import java.io.FileReader;
 
 public class Utils {
 
+	// Returns the file of path String:path as a String
 	public static String loadFileAsString(String path) {
 		StringBuilder stringBuilder = new StringBuilder();
 		

@@ -18,6 +18,7 @@ public class Entity {
 	
 	protected BufferedImage texture;
 	
+	// Creates a new entity in the specified position (xPos, yPos)
 	public Entity(int xPos, int yPos, Handler handler) {
 		this.handler = handler;
 
@@ -33,10 +34,12 @@ public class Entity {
 		height = texture.getHeight();
 	}
 	
+	// The Entity tick has no default functionality
 	public void tick() {
 		
 	}
 	
+	// Draws this Entity's texture to the screen offset and zoomed appropriately
 	public void render(Graphics g) {
 		
 		g.drawImage(texture,

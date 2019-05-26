@@ -26,6 +26,8 @@ public class Game implements Runnable{
 	private Player p1;
 	private Map m1;
 	
+	// Constructs a Game object for a window of int:width and int:height
+	// Debug info will be printed to console if debug = true
 	public Game(int width, int height) {
 		this.width = width;
 		this.height = height;
@@ -33,6 +35,7 @@ public class Game implements Runnable{
 		debug = true;
 	}
 	
+	// Initializes important variables
 	private void init() {
 		if(debug) {System.out.println("creating display");}
 		display = new Display(width, height);
@@ -55,6 +58,7 @@ public class Game implements Runnable{
 		camera.setFocus(p1);
 	}
 	
+	// Sets up the game and runs the tick and render loop until the game is over
 	public void run() {
 		if(debug) {System.out.println("INITIALIZING");}
 		init();
@@ -97,12 +101,14 @@ public class Game implements Runnable{
 		}
 	}
 	
+	// Calls tick() of all necessary objects
 	private void tick() {
 		keyHandler.tick();
 		p1.tick();
 		camera.tick();
 	}
 	
+	// Clears screen and calls render(Graphics g) of all necessary objects
 	private void render() {
 		BufferStrategy bs = display.getCanvas().getBufferStrategy();
 		if (bs == null) {
@@ -121,6 +127,7 @@ public class Game implements Runnable{
 		g.dispose();
 	}
 	
+	// Starts this object as a thread
 	public void start() {
 		running = true;
 		
