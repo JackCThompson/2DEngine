@@ -3,23 +3,21 @@ package thompson.jack.engine2D;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-public class World {
+public class Map {
 
 	private Handler handler;
 	private BufferedImage map;
 	private CollisionBox[] collisionBox;
 	
-	public World(BufferedImage map, CollisionBox[] collisionBox, Handler handler) {
+	public Map(BufferedImage map, CollisionBox[] collisionBox, Handler handler) {
 		this.handler = handler;
 		this.map = map;
 		this.collisionBox = collisionBox;
 	}
 	
-	public World(BufferedImage map, Handler handler) {
+	public Map(BufferedImage map, Handler handler) {
 		this.handler = handler;
 		this.map = map;
-		
-		collisionBox = new CollisionBox[]{new CollisionBox(189, 424, 67, 120)};
 	}
 	
 	public void render(Graphics g) {

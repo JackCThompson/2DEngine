@@ -24,7 +24,7 @@ public class Game implements Runnable{
 	private Camera camera;
 	
 	private Player p1;
-	private World m1;
+	private Map m1;
 	
 	public Game(int width, int height) {
 		this.width = width;
@@ -50,7 +50,7 @@ public class Game implements Runnable{
 		camera = new Camera(handler);
 		
 		p1 = new Player(0, 0, handler);
-		m1 = new World(graphicsLoader.getImage("maps", "huskies"), handler);
+		m1 = MapLoader.loadMap("huskies", handler);
 		
 		camera.setFocus(p1);
 	}
@@ -152,7 +152,7 @@ public class Game implements Runnable{
 		return camera;
 	}
 	
-	public World getWorld() {
+	public Map getMap() {
 		return m1;
 	}
 }

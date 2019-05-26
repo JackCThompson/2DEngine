@@ -29,14 +29,14 @@ public class Camera {
 			
 			if (xPos < 0) {
 				xPos = 0;
-			} else if (xPos + handler.getGame().getWidth() / scale > handler.getGame().getWorld().getWidth()) {
-				xPos = (int) (handler.getGame().getWorld().getWidth() - handler.getGame().getWidth() / scale);
+			} else if (xPos + handler.getGame().getWidth() / scale > handler.getGame().getMap().getWidth()) {
+				xPos = (int) (handler.getGame().getMap().getWidth() - handler.getGame().getWidth() / scale);
 			}
 			
 			if (yPos < 0) {
 				yPos = 0;
-			} else if (yPos + handler.getGame().getHeight() / scale > handler.getGame().getWorld().getHeight()) {
-				yPos = (int) (handler.getGame().getWorld().getHeight() - handler.getGame().getHeight() / scale);
+			} else if (yPos + handler.getGame().getHeight() / scale > handler.getGame().getMap().getHeight()) {
+				yPos = (int) (handler.getGame().getMap().getHeight() - handler.getGame().getHeight() / scale);
 			}
 			
 		} else {
