@@ -5,8 +5,8 @@ public class Player extends Entity{
 	private int speed;
 	
 	// Creates a new Player object at position (xPos, yPos)
-	public Player(int xPos, int yPos, Handler handler) {
-		super(xPos, yPos, handler);
+	public Player(int xPos, int yPos, GameState gameState, Handler handler) {
+		super(xPos, yPos, gameState, handler);
 		
 		speed = 5;
 	}
@@ -32,11 +32,11 @@ public class Player extends Entity{
 		CollisionBox newBoxX = collisionBox.translate(xPos + xMove, yPos);
 		CollisionBox newBoxY = collisionBox.translate(xPos, yPos + yMove);
 		
-		if (handler.getGame().getMap().intersects(newBoxX)) {
+		if (gameState.getMap().intersects(newBoxX)) {
 			xMove = 0;
 		}
 		
-		if (handler.getGame().getMap().intersects(newBoxY)) {
+		if (gameState.getMap().intersects(newBoxY)) {
 			yMove = 0;
 		}
 		
@@ -45,14 +45,14 @@ public class Player extends Entity{
 
 		if (xPos + collisionBox.getX() < 0) {
 			xPos = -collisionBox.getX();
-		} else if (xPos + collisionBox.getX() + collisionBox.getWidth() > handler.getGame().getMap().getWidth()) {
-			xPos = handler.getGame().getMap().getWidth() - collisionBox.getX() - collisionBox.getWidth();
+		} else if (xPos + collisionBox.getX() + collisionBox.getWidth() > gameState.getMap().getWidth()) {
+			xPos = gameState.getMap().getWidth() - collisionBox.getX() - collisionBox.getWidth();
 		}
 		
 		if (yPos + collisionBox.getY() < 0) {
 			yPos = -collisionBox.getY();
-		} else if (yPos + collisionBox.getY() + collisionBox.getHeight() > handler.getGame().getMap().getHeight()) {
-			yPos = handler.getGame().getMap().getHeight() - collisionBox.getY() - collisionBox.getHeight();
+		} else if (yPos + collisionBox.getY() + collisionBox.getHeight() > gameState.getMap().getHeight()) {
+			yPos = gameState.getMap().getHeight() - collisionBox.getY() - collisionBox.getHeight();
 		} 
 		
 		collisionBoxOnMap = collisionBox.translate(xPos, yPos);

@@ -21,10 +21,7 @@ public class Game implements Runnable{
 	private KeyHandler keyHandler;
 	private GraphicsLoader graphicsLoader;
 	
-	private Camera camera;
-	
-	private Player p1;
-	private Map m1;
+	private State currentState;
 	
 	// Constructs a Game object for a window of int:width and int:height
 	// Debug info will be printed to console if debug = true
@@ -49,13 +46,8 @@ public class Game implements Runnable{
 
 		if(debug) {System.out.println("creating asset handler");}
 		graphicsLoader = new GraphicsLoader();
-
-		camera = new Camera(handler);
 		
-		p1 = new Player(0, 0, handler);
-		m1 = MapLoader.loadMap("huskies", handler);
-		
-		camera.setFocus(p1);
+		currentState = new GameState(handler);
 	}
 	
 	// Sets up the game and runs the tick and render loop until the game is over
@@ -104,8 +96,7 @@ public class Game implements Runnable{
 	// Calls tick() of all necessary objects
 	private void tick() {
 		keyHandler.tick();
-		p1.tick();
-		camera.tick();
+		currentState.tick();
 	}
 	
 	// Clears screen and calls render(Graphics g) of all necessary objects
@@ -120,8 +111,7 @@ public class Game implements Runnable{
 		
 		g.clearRect(0, 0, width, height);
 		
-		m1.render(g);
-		p1.render(g);
+		currentState.render(g);
 		
 		bs.show();
 		g.dispose();
@@ -155,11 +145,11 @@ public class Game implements Runnable{
 		return display;
 	}
 	
-	public Camera getCamera() {
-		return camera;
-	}
-	
-	public Map getMap() {
-		return m1;
-	}
+//	public Camera getCamera() {
+//		return camera;
+//	}
+//	
+//	public Map getMap() {
+//		return m1;
+//	}
 }

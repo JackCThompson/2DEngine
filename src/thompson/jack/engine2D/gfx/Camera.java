@@ -1,11 +1,13 @@
 package thompson.jack.engine2D.gfx;
 
+import thompson.jack.engine2D.GameState;
 import thompson.jack.engine2D.Handler;
 import thompson.jack.engine2D.Player;
 
 public class Camera {
 
 	private Handler handler;
+	private GameState gameState;
 	
 	private int xPos;
 	private int yPos;
@@ -15,8 +17,9 @@ public class Camera {
 	
 	private Player focused;
 	
-	public Camera(Handler handler) {
+	public Camera(GameState gameState, Handler handler) {
 		this.handler = handler;
+		this.gameState = gameState;
 		
 		focusedHeight = 0.4;
 	}
@@ -29,14 +32,14 @@ public class Camera {
 			
 			if (xPos < 0) {
 				xPos = 0;
-			} else if (xPos + handler.getGame().getWidth() / scale > handler.getGame().getMap().getWidth()) {
-				xPos = (int) (handler.getGame().getMap().getWidth() - handler.getGame().getWidth() / scale);
+			} else if (xPos + handler.getGame().getWidth() / scale > gameState.getMap().getWidth()) {
+				xPos = (int) (gameState.getMap().getWidth() - handler.getGame().getWidth() / scale);
 			}
 			
 			if (yPos < 0) {
 				yPos = 0;
-			} else if (yPos + handler.getGame().getHeight() / scale > handler.getGame().getMap().getHeight()) {
-				yPos = (int) (handler.getGame().getMap().getHeight() - handler.getGame().getHeight() / scale);
+			} else if (yPos + handler.getGame().getHeight() / scale > gameState.getMap().getHeight()) {
+				yPos = (int) (gameState.getMap().getHeight() - handler.getGame().getHeight() / scale);
 			}
 			
 		} else {

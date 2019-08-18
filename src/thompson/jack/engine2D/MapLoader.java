@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class MapLoader {
 
 	// Returns a new Map loaded from data in the png and txt files called String:mapName.(png/txt)
-	public static Map loadMap(String mapName, Handler handler) {
+	public static Map loadMap(String mapName, GameState gameState, Handler handler) {
 		BufferedImage mapImage = handler.getGraphicsLoader().getImage("maps", mapName);
 		
 		Scanner mapData = new Scanner(Utils.loadFileAsString("res/maps/" + mapName + ".txt"));
@@ -22,6 +22,6 @@ public class MapLoader {
 		
 		mapData.close();
 		
-		return new Map(mapImage, collisionBoxes.toArray(new CollisionBox[0]), handler);
+		return new Map(mapImage, collisionBoxes.toArray(new CollisionBox[0]), gameState, handler);
 	}
 }

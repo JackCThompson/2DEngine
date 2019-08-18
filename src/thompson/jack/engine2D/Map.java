@@ -6,19 +6,21 @@ import java.awt.image.BufferedImage;
 public class Map {
 
 	private Handler handler;
+	private GameState gameState;
 	private BufferedImage map;
 	private CollisionBox[] collisionBox;
 	
 	// Creates a new Map object with the background BufferedImage:map and CollisionBox[]:collisionBox
-	public Map(BufferedImage map, CollisionBox[] collisionBox, Handler handler) {
+	public Map(BufferedImage map, CollisionBox[] collisionBox, GameState gameState, Handler handler) {
 		this.handler = handler;
+		this.gameState = gameState;
 		this.map = map;
 		this.collisionBox = collisionBox;
 	}
 	
 	// Creates a new Map object with the background BufferedImage:map
-	public Map(BufferedImage map, Handler handler) {
-		this(map, null, handler);
+	public Map(BufferedImage map, GameState gameState, Handler handler) {
+		this(map, null, gameState, handler);
 	}
 	
 	// Renders the visible portion of the map to the screen
@@ -29,10 +31,10 @@ public class Map {
 				0, 
 				handler.getGame().getWidth(), 
 				handler.getGame().getHeight(), 
-				handler.getCamera().getXPos(), 
-				handler.getCamera().getYPos(),
-				handler.getCamera().getXPos() + (int) Math.round(handler.getGame().getWidth() / handler.getCamera().getScale()), 
-				handler.getCamera().getYPos() + (int) Math.round(handler.getGame().getHeight() / handler.getCamera().getScale()), 
+				gameState.getCamera().getXPos(), 
+				gameState.getCamera().getYPos(),
+				gameState.getCamera().getXPos() + (int) Math.round(handler.getGame().getWidth() / gameState.getCamera().getScale()), 
+				gameState.getCamera().getYPos() + (int) Math.round(handler.getGame().getHeight() / gameState.getCamera().getScale()), 
 				null);
 	}
 	

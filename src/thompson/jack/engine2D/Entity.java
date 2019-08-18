@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 public class Entity {
 
 	protected Handler handler;
+	protected GameState gameState;
 	
 	protected int xPos;
 	protected int yPos;
@@ -19,9 +20,10 @@ public class Entity {
 	protected BufferedImage texture;
 	
 	// Creates a new entity in the specified position (xPos, yPos)
-	public Entity(int xPos, int yPos, Handler handler) {
+	public Entity(int xPos, int yPos, GameState gameState, Handler handler) {
 		this.handler = handler;
-
+		this.gameState = gameState;
+		
 		this.xPos = xPos;
 		this.yPos = yPos;
 
@@ -43,10 +45,10 @@ public class Entity {
 	public void render(Graphics g) {
 		
 		g.drawImage(texture,
-				   (int) Math.round((xPos - handler.getCamera().getXPos()) * handler.getCamera().getScale()), 
-				   (int) Math.round((yPos - handler.getCamera().getYPos()) * handler.getCamera().getScale()), 
-				   (int) Math.round(width * handler.getCamera().getScale()), 
-				   (int) Math.round(height * handler.getCamera().getScale()),
+				   (int) Math.round((xPos - gameState.getCamera().getXPos()) * gameState.getCamera().getScale()), 
+				   (int) Math.round((yPos - gameState.getCamera().getYPos()) * gameState.getCamera().getScale()), 
+				   (int) Math.round(width * gameState.getCamera().getScale()), 
+				   (int) Math.round(height * gameState.getCamera().getScale()),
 				   null);
 		
 	}

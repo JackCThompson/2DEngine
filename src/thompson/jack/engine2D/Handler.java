@@ -1,6 +1,5 @@
 package thompson.jack.engine2D;
 
-import thompson.jack.engine2D.gfx.Camera;
 import thompson.jack.engine2D.gfx.GraphicsLoader;
 import thompson.jack.engine2D.input.KeyHandler;
 
@@ -24,11 +23,7 @@ public class Handler {
 	public Display getDisplay() {
 		return game.getDisplay();
 	}
-	
-	public Camera getCamera() {
-		return game.getCamera();
-	}
-	
+		
 	public GraphicsLoader getGraphicsLoader(){
 		return game.getGraphicsLoader();
 	}
