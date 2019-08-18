@@ -1,5 +1,7 @@
 package thompson.jack.engine2D;
 
+import thompson.jack.engine2D.states.GameState;
+
 public class Player extends Entity{
 	
 	private int speed;

@@ -4,6 +4,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import thompson.jack.engine2D.states.GameState;
+
 public class MapLoader {
 
 	// Returns a new Map loaded from data in the png and txt files called String:mapName.(png/txt)

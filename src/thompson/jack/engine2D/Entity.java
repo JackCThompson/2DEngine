@@ -3,6 +3,8 @@ package thompson.jack.engine2D;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import thompson.jack.engine2D.states.GameState;
+
 public class Entity {
 
 	protected Handler handler;

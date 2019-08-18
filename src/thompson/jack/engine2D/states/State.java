@@ -1,6 +1,8 @@
-package thompson.jack.engine2D;
+package thompson.jack.engine2D.states;
 
 import java.awt.Graphics;
+
+import thompson.jack.engine2D.Handler;
 
 public abstract class State {
 

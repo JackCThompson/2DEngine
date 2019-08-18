@@ -6,6 +6,8 @@ import java.awt.image.BufferStrategy;
 import thompson.jack.engine2D.gfx.Camera;
 import thompson.jack.engine2D.gfx.GraphicsLoader;
 import thompson.jack.engine2D.input.KeyHandler;
+import thompson.jack.engine2D.states.GameState;
+import thompson.jack.engine2D.states.State;
 
 public class Game implements Runnable{
 
@@ -144,12 +146,4 @@ public class Game implements Runnable{
 	public Display getDisplay() {
 		return display;
 	}
-	
-//	public Camera getCamera() {
-//		return camera;
-//	}
-//	
-//	public Map getMap() {
-//		return m1;
-//	}
 }

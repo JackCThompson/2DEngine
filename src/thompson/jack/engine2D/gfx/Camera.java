@@ -1,8 +1,8 @@
 package thompson.jack.engine2D.gfx;
 
-import thompson.jack.engine2D.GameState;
 import thompson.jack.engine2D.Handler;
 import thompson.jack.engine2D.Player;
+import thompson.jack.engine2D.states.GameState;
 
 public class Camera {
 
