@@ -1,8 +1,10 @@
-package thompson.jack.engine2D;
+package thompson.jack.engine2D.entities;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import thompson.jack.engine2D.CollisionBox;
+import thompson.jack.engine2D.Handler;
 import thompson.jack.engine2D.states.GameState;
 
 public class Entity {

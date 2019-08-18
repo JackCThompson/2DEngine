@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import thompson.jack.engine2D.Handler;
 import thompson.jack.engine2D.Map;
 import thompson.jack.engine2D.MapLoader;
-import thompson.jack.engine2D.Player;
+import thompson.jack.engine2D.entities.Player;
 import thompson.jack.engine2D.gfx.Camera;
 
 public class GameState extends State{

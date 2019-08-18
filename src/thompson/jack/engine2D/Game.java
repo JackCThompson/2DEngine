@@ -3,7 +3,6 @@ package thompson.jack.engine2D;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 
-import thompson.jack.engine2D.gfx.Camera;
 import thompson.jack.engine2D.gfx.GraphicsLoader;
 import thompson.jack.engine2D.input.KeyHandler;
 import thompson.jack.engine2D.states.GameState;
